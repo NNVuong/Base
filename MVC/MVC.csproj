@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml"/>
+        <_ContentIncludedByDefault Remove="Areas\Identity\Views\Home\Index.cshtml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Areas\Administrator\Views\CategoryDetailsManagement\Create\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Administrator\Views\CategoryDetailsManagement\Create\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Administrator\Views\CategoryDetailsManagement\Edit\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Administrator\Views\CategoryDetailsManagement\Edit\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Administrator\Views\CategoryDetailsManagement\Index\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Administrator\Views\CategoryDetailsManagement\Index\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Guest\Views\Home\AccessDenied.cshtml"/>
+        <AdditionalFiles Include="Areas\Guest\Views\Home\Error.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\RoleManagement\Create\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\RoleManagement\Create\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\RoleManagement\Edit\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\RoleManagement\Edit\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\RoleManagement\Index\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\RoleManagement\Index\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserCampusManagement\Create\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserCampusManagement\Create\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserCampusManagement\Edit\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserCampusManagement\Edit\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserCampusManagement\Index\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserCampusManagement\Index\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserManagement\Create\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserManagement\Create\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserManagement\Edit\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserManagement\Edit\View.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserManagement\Index\Scripts.cshtml"/>
+        <AdditionalFiles Include="Areas\Identity\Views\UserManagement\Index\View.cshtml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Services\Services.csproj"/>
+    </ItemGroup>
+
+</Project>

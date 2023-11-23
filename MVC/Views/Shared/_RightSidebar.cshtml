@@ -1,0 +1,136 @@
+﻿<div class="offcanvas offcanvas-end" tabindex="-1" id="theme-settings-offcanvas">
+    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
+        <h5 class="text-white m-0">Tùy chỉnh giao diện</h5>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body p-0">
+        <div data-simplebar class="h-100">
+            <div class="card mb-0 p-3">
+
+                <h5 class="my-3 fs-16 fw-bold">Chủ đề</h5>
+
+                <div class="d-flex flex-column gap-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="data-bs-theme" id="layout-color-light" value="light">
+                        <label class="form-check-label" for="layout-color-light">Sáng</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="data-bs-theme" id="layout-color-dark" value="dark">
+                        <label class="form-check-label" for="layout-color-dark">Tối</label>
+                    </div>
+                </div>
+
+                @* <div id="layout-width"> *@
+                @*     <h5 class="my-3 fs-16 fw-bold">Layout Mode</h5> *@
+                @* *@
+                @*     <div class="d-flex flex-column gap-2"> *@
+                @*         <div class="form-check form-switch"> *@
+                @*             <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-fluid" value="fluid"> *@
+                @*             <label class="form-check-label" for="layout-mode-fluid">Fluid</label> *@
+                @*         </div> *@
+                @* *@
+                @*         <div id="layout-boxed"> *@
+                @*             <div class="form-check form-switch"> *@
+                @*                 <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-boxed" value="boxed"> *@
+                @*                 <label class="form-check-label" for="layout-mode-boxed">Boxed</label> *@
+                @*             </div> *@
+                @*         </div> *@
+                @* *@
+                @*         <div id="layout-detached"> *@
+                @*             <div class="form-check form-switch"> *@
+                @*                 <input class="form-check-input" type="checkbox" name="data-layout-mode" id="data-layout-detached" value="detached"> *@
+                @*                 <label class="form-check-label" for="data-layout-detached">Detached</label> *@
+                @*             </div> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
+
+                <h5 class="my-3 fs-16 fw-bold">Màu sắc thanh trạng thái</h5>
+
+                <div class="d-flex flex-column gap-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="data-topbar-color" id="topbar-color-light" value="light">
+                        <label class="form-check-label" for="topbar-color-light">Sáng</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="data-topbar-color" id="topbar-color-dark" value="dark">
+                        <label class="form-check-label" for="topbar-color-dark">Tối</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="data-topbar-color" id="topbar-color-brand" value="brand">
+                        <label class="form-check-label" for="topbar-color-brand">Nền màu</label>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="my-3 fs-16 fw-bold">Màu sắc trình đơn</h5>
+
+                    <div class="d-flex flex-column gap-2">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" id="leftbar-color-light" value="light">
+                            <label class="form-check-label" for="leftbar-color-light">Sáng</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" id="leftbar-color-dark" value="dark">
+                            <label class="form-check-label" for="leftbar-color-dark">Tối</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" id="leftbar-color-brand" value="brand">
+                            <label class="form-check-label" for="leftbar-color-brand">Nền màu</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sidebar-size">
+                    <h5 class="my-3 fs-16 fw-bold">Kích thước trình đơn</h5>
+
+                    <div class="d-flex flex-column gap-2">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-default" value="default">
+                            <label class="form-check-label" for="leftbar-size-default">Mặc định</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-compact" value="compact">
+                            <label class="form-check-label" for="leftbar-size-compact">Rút gọn</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-small" value="condensed">
+                            <label class="form-check-label" for="leftbar-size-small">Gom nhỏ</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-small-hover" value="sm-hover">
+                            <label class="form-check-label" for="leftbar-size-small-hover">Ẩn hiện</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="data-sidenav-size" id="leftbar-size-full" value="full">
+                            <label class="form-check-label" for="leftbar-size-full">Nội dung lớn</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="layout-position">
+                    <h5 class="my-3 fs-16 fw-bold">Tùy chọn thanh bên</h5>
+
+                    <div class="btn-group checkbox" role="group">
+                        <input type="radio" class="btn-check" name="data-layout-position" id="layout-position-fixed" value="fixed">
+                        <label class="btn btn-soft-primary w-sm" for="layout-position-fixed">Ghim</label>
+
+                        <input type="radio" class="btn-check" name="data-layout-position" id="layout-position-scrollable" value="scrollable">
+                        <label class="btn btn-soft-primary w-sm ms-0" for="layout-position-scrollable">Không ghim</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@model UserRequest
+
+<input asp-for="Id" hidden=""/>
+<input asp-for="IsDeleted" hidden=""/>
+
+<div class="position-relative mb-3">
+    <label class="form-label" asp-for="Name"></label>
+    <input type="text" class="form-control" asp-for="Name" required>
+    <div class="invalid-tooltip">
+        <i class="ri-error-warning-line"></i>
+        <span>Vui lòng nhập "@Html.DisplayNameFor(x => x.Name)"</span>
+    </div>
+</div>
+
+<div class="position-relative mb-3">
+    <label class="form-label" asp-for="Email"></label>
+    <input type="text" class="form-control" asp-for="Email" required>
+    <div class="invalid-tooltip">
+        <i class="ri-error-warning-line"></i>
+        <span>Vui lòng nhập "@Html.DisplayNameFor(x => x.Email)"</span>
+    </div>
+</div>

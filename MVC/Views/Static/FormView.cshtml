@@ -1,0 +1,61 @@
+﻿@model dynamic
+
+@{
+    var actionName = $"{ViewContext.RouteData.Values["Action"]}".ToLower().Contains("create")
+        ? "Thêm mới"
+        : "Chỉnh sửa";
+
+    var actionIcon = $"{ViewContext.RouteData.Values["Action"]}".ToLower().Contains("create")
+        ? "ri-add-circle-line"
+        : "ri-edit-circle-line";
+
+    var path = $"~/Areas/{ViewContext.RouteData.Values["Area"]}/" +
+               $"Views/{ViewContext.RouteData.Values["Controller"]}/" +
+               $"{ViewContext.RouteData.Values["Action"]}";
+
+    var viewPath = path + "/View.cshtml";
+
+    var scriptsPath = path + "/Scripts.cshtml";
+}
+
+@section Scripts
+{
+    @await Html.PartialAsync(scriptsPath, Model, null)
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title text-center text-primary">@actionName</h4>
+                <hr/>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <form asp-area="@ViewContext.RouteData.Values["Area"]"
+                              asp-controller="@ViewContext.RouteData.Values["Controller"]"
+                              asp-action="@ViewContext.RouteData.Values["Action"]"
+                              class="needs-validation" novalidate>
+                            @Html.AntiForgeryToken()
+                            @await Html.PartialAsync(viewPath, Model, null)
+
+                            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                <button type="submit" class="btn btn-outline-secondary rounded-pill">
+                                    <i class="@actionIcon"></i>
+                                    <span>@actionName</span>
+                                </button>
+                                <a asp-area="@ViewContext.RouteData.Values["Area"]"
+                                   asp-controller="@ViewContext.RouteData.Values["Controller"]"
+                                   asp-action="Index"
+                                   type="button" class="btn btn-outline-primary rounded-pill">
+                                    <i class="ri-close-circle-line"></i>
+                                    <span>Hủy</span>
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model UserCampusRequest
+
+<input asp-for="Id" hidden=""/>
+<input asp-for="IsDeleted" hidden=""/>
+
+<div class="position-relative mb-3">
+    <label class="form-label" asp-for="UserId"></label>
+    <select class="form-control" asp-for="UserId" asp-items="ViewBag.Users" required>
+    </select>
+</div>
+
+<div class="position-relative mb-3">
+    <label class="form-label" asp-for="CampusId"></label>
+    <select class="form-control select2" data-toggle="select2" asp-for="CampusId" asp-items="ViewBag.Campuses" required>
+        <option selected disabled>Vui lòng chọn "@Html.DisplayNameFor(x => x.CampusId)"</option>
+    </select>
+</div>

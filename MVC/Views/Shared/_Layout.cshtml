@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<!--suppress JSPotentiallyInvalidConstructorUsage, CommaExpressionJS -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+    <title>FPT Education - MFR</title>
+    <meta content="FPT EDUCATION" name="author"/>
+
+    <!-- Assets Start -->
+    <link href="~/assets/vendor/jquery-toast-plugin/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css"/>
+    <script src="~/assets/js/config.js"></script>
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Assets End -->
+
+    <!-- Favicon Tags Start -->
+    <link rel="icon" type="image/png" href="~/favicon.png" sizes="128x128"/>
+    <!-- Favicon Tags End -->
+
+    <!-- Font Tags Start -->
+    @* <link rel="preconnect" href=@Html.Raw("https://fonts.gstatic.com")/> *@
+    @* <link href=@Html.Raw("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap") rel="stylesheet"/> *@
+    @* <link href=@Html.Raw("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap") rel="stylesheet"/> *@
+    <!-- Font Tags End -->
+
+    <!-- Core CSS Start -->
+    <link rel="stylesheet" href="~/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <!-- Core CSS End -->
+</head>
+
+<body>
+<div id="preloader">
+    <div id="status">
+        <div class="bouncing-loader">
+            <div ></div>
+            <div ></div>
+            <div ></div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+
+    @await Html.PartialAsync("_Topbar")
+
+    @await Html.PartialAsync("_LeftSidebar")
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12 justify-content-between">
+                        <div class="page-title-box justify-content-between d-flex align-items-md-center flex-md-row flex-column">
+                            <h4 class="page-title">@ViewBag.Title</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@await Html.PartialAsync("_RightSidebar")
+
+<!-- Assets Start -->
+<script src="~/assets/js/vendor.min.js"></script>
+<script src="~/assets/vendor/select2/js/select2.min.js"></script>
+<script src="~/assets/vendor/jquery-toast-plugin/jquery.toast.min.js"></script>
+<script src="~/assets/vendor/daterangepicker/moment.min.js"></script>
+<script src="~/assets/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="~/assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+<script src="~/assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+<script src="~/assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+<script src="~/assets/vendor/handlebars/handlebars.min.js"></script>
+<script src="~/assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+<script src="~/assets/vendor/flatpickr/flatpickr.min.js"></script>
+<script src="~/assets/js/app.min.js"></script>
+
+@if (ViewBag.MessageResponse != null)
+{
+    var toastStatus = ViewBag.MessageResponse.IsSuccess switch{ null => $"{Message.Status.WarningStatus}", true => $"{Message.Status.SuccessStatus}" , _ => $"{Message.Status.FailureStatus}"};
+    var toastColor = ViewBag.MessageResponse.IsSuccess switch{ null => "warning", true => "success" , _ => "error"};
+    var toastMessage = ViewBag.MessageResponse.Message;
+    <script>
+    !function (c) {
+        "use strict";
+        
+        function t() {
+        }
+        
+        t.prototype.send = function (t, o, i, e, n, a, s, r) {
+        t = {heading: t, text: o, position: i, loaderBg: e, icon: n, hideAfter: a || 3e3, stack:  s || 1};
+        t.showHideTransition = r || "fade", c.toast().reset("all"), c.toast(t)
+        }, c.NotificationApp = new t, c.NotificationApp.Constructor = t,
+        
+        c.NotificationApp.send("@toastStatus","@toastMessage", "top-center", "rgba(0,0,0,0.2)", "@toastColor")
+    }(window.jQuery);
+    </script>
+}
+
+<!-- Assets End -->
+
+<!-- Core JS Start -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+@await Html.PartialAsync("_Validation")
+<script src="~/js/site.js"></script>
+@await RenderSectionAsync("Scripts", false)
+<!-- Core JS End -->
+</body>
+</html>

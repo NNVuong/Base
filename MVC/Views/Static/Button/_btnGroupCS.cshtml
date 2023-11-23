@@ -1,0 +1,40 @@
+﻿@model PaginationInfo
+
+@{
+    var pageSizeValue = new List<string> { "10", "25", "50", "100" };
+    var pageSizes = new List<SelectListItem>();
+    pageSizeValue.ForEach(p => pageSizes.Add(new SelectListItem(p, p)));
+}
+
+<form asp-area="@ViewContext.RouteData.Values["Area"]"
+      asp-controller="@ViewContext.RouteData.Values["Controller"]"
+      asp-action="@HttpMethods.Get" novalidate>
+    @Html.AntiForgeryToken()
+
+
+    <input asp-for="TotalPages" hidden="">
+    <input asp-for="CurrentPage" hidden="">
+    <input asp-for="TotalItems" hidden="">
+
+    <div class="row">
+        <div class="d-flex flex-wrap gap-2 justify-content-left input-group">
+            <a asp-area="@ViewContext.RouteData.Values["Area"]"
+               asp-controller="@ViewContext.RouteData.Values["Controller"]"
+               asp-action="@HttpMethods.Post"
+               type="button" class="btn btn-outline-primary rounded-pill">
+                <i class="ri-add-circle-line"></i>
+                <span>Thêm mới</span>
+            </a>
+            @await Html.PartialAsync($"{ViewBag.BtnPath}")
+        </div>
+    </div>
+
+    <div class="input-group" style="padding-top: 5px; padding-bottom: 5px">
+        <select class="form-select badge-outline-secondary" style="max-width: 85px" asp-for="PageSize" asp-items="@pageSizes" required></select>
+        <input type="text" class="form-control col-auto badge-outline-secondary" placeholder="Nhập nội dung cần tìm kiếm" asp-for="Keyword">
+        <button type="submit" class="btn btn-outline-primary col-auto">
+            <i class="ri-search-2-line"></i>
+            <span>Tìm kiếm</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,91 @@
+﻿<div class="navbar-custom">
+    <div class="topbar container-fluid">
+        <div class="d-flex align-items-center gap-lg-2 gap-1">
+            <!-- Sidebar Menu Toggle Button -->
+            <button class="button-toggle-menu">
+                <i class="ri-menu-2-fill fs-22"></i>
+            </button>
+            <a asp-area="@AreaName.Guest" asp-controller="Home" asp-action="Index" class="d-flex align-items-center text-reset">
+                <div class="flex-shrink-0">
+                    <img src="~/assets/images/logo.png" alt="user-image" height="42">
+                </div>
+            </a>
+        </div>
+        <ul class="topbar-menu d-flex align-items-center gap-3">
+
+            <li class="d-none d-sm-inline-block">
+                <a class="nav-link" data-bs-toggle="offcanvas" href="#theme-settings-offcanvas">
+                    <i class="ri-settings-3-fill fs-22"></i>
+                </a>
+            </li>
+
+            <li class="d-none d-sm-inline-block">
+                <a class="nav-link" asp-area="@AreaName.Guest" asp-controller="Home" asp-action="Index">
+                    <i class="ri-home-4-fill fs-22"></i>
+                </a>
+            </li>
+
+            @{
+                string userName = ViewBag.UserInfomation.UserName;
+                // string userId = ViewBag.UserInfomation.UserId;
+                string userRoles = string.Join("<br/>", ViewBag.UserInfomation.UserRole);
+                string userCampuses = string.Join("<br/>", ViewBag.UserInfomation.UserCampusName);
+            }
+            <li class="dropdown me-md-2">
+                @if (User.Identity is {IsAuthenticated: true } && !string.IsNullOrEmpty(userName))
+                {
+                    <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <span class="account-user-avatar">
+                            <img src="@Html.Raw($"/assets/images/users/avatar-{new Random().Next(1, 10)}.jpg")" alt="user-image" width="32" class="rounded-circle">
+                        </span>
+                        <span class="d-lg-flex flex-column gap-1 d-none">
+                            <h5 class="my-0">@ViewBag.UserInfomation.UserName</h5>
+                        </span>
+                    </a>
+                }
+                else
+                {
+                    <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <span class="account-user-avatar">
+                            <img src="~/assets/images/users/avatar-10.jpg" alt="user-image" width="32" class="rounded-circle">
+                        </span>
+                        <span class="d-lg-flex flex-column gap-1 d-none">
+                            <h5 class="my-0">ẨN DANH</h5>
+                        </span>
+                    </a>
+                }
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
+                    @if (User.Identity is {IsAuthenticated: true } && !string.IsNullOrEmpty(userRoles) && !string.IsNullOrEmpty(userCampuses))
+                    {
+                        <div class=" dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">
+                                Campus
+                            </h6>
+                            <h6 class="text-primary">
+                                @Html.Raw(userCampuses)
+                            </h6>
+                            <hr/>
+                            <h6 class="text-overflow m-0">
+                                Quyền truy cập
+                            </h6>
+                            <h6 class="text-primary">
+                                @Html.Raw(userRoles)
+                            </h6>
+                        </div>
+                        <a asp-area="@AreaName.Identity" asp-controller="Auth" asp-action="Logout" class="dropdown-item">
+                            <i class="ri-logout-box-fill align-middle me-1 fs-22"></i>
+                            <span>Đăng xuất</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="@AreaName.Identity" asp-controller="Auth" asp-action="Login" class="dropdown-item">
+                            <i class="ri-login-box-fill align-middle me-1 fs-22"></i>
+                            <span>Đăng nhập</span>
+                        </a>
+                    }
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

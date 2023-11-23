@@ -1,0 +1,115 @@
+﻿<div class="leftside-menu">
+    <a asp-area="@AreaName.Guest" asp-controller="Home" asp-action="Index" class="logo logo-light">
+        <span class="logo-lg">
+            FPT EDUCATION
+        </span>
+        <span class="logo-sm">
+            FE
+        </span>
+    </a>
+    <a asp-area="@AreaName.Guest" asp-controller="Home" asp-action="Index" class="logo logo-dark">
+        <span class="logo-lg">
+            FPT EDUCATION
+        </span>
+        <span class="logo-sm">
+            FE
+        </span>
+    </a>
+    <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+        <i class="ri-checkbox-blank-circle-line align-middle"></i>
+    </div>
+    <div class="button-close-fullsidebar">
+        <i class="ri-close-fill align-middle"></i>
+    </div>
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
+        <ul class="side-nav">
+            <li class="side-nav-title mt-1">System</li>
+            <li class="side-nav-item">
+                <a class="side-nav-link" asp-area="@AreaName.Guest" asp-controller="Home" asp-action="Index">
+                    <i class="ri-home-4-fill"></i>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a class="side-nav-link" data-bs-toggle="offcanvas" href="#theme-settings-offcanvas">
+                    <i class="ri-settings-3-fill"></i>
+                    <span>Thiết lập</span>
+                </a>
+            </li>
+            <hr/>
+
+            @if (User.IsInRole(UserRoleType.Administrator) || User.IsInRole(UserRoleType.SuperAdministrator))
+            {
+                const string areaName = AreaName.Administrator;
+                <li class="side-nav-title mt-1">@areaName</li>
+                <li class="side-nav-item">
+                    <a asp-area="@areaName" asp-controller="CategoryManagement" asp-action="Index" class="side-nav-link">
+                        <i class="ri-file-list-3-fill"></i>
+                        <span> Quản lý danh mục </span>
+                    </a>
+                </li>
+                <hr/>
+            }
+
+            @if (User.IsInRole(UserRoleType.SuperAdministrator))
+            {
+                const string areaName = AreaName.Identity;
+                <li class="side-nav-title mt-1">@areaName</li>
+                <li class="side-nav-item">
+                    <a asp-area="@areaName" asp-controller="UserManagement" asp-action="Index" class="side-nav-link">
+                        <i class="ri-contacts-fill"></i>
+                        <span> Người dùng </span>
+                    </a>
+
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="@areaName" asp-controller="RoleManagement" asp-action="Index" class="side-nav-link">
+                        <i class="ri-group-2-fill"></i>
+                        <span> Quyền truy cập </span>
+                    </a>
+
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="@areaName" asp-controller="UserRoleManagement" asp-action="Index" class="side-nav-link">
+                        <i class="ri-admin-fill"></i>
+                        <span> Quyền truy cập người dùng </span>
+                    </a>
+
+                </li>
+                <li class="side-nav-item">
+
+                    <a asp-area="@areaName" asp-controller="CampusManagement" asp-action="Index" class="side-nav-link">
+                        <i class="ri-school-fill"></i>
+                        <span> Campus </span>
+                    </a>
+
+                </li>
+                <li class="side-nav-item">
+
+                    <a asp-area="@areaName" asp-controller="UserCampusManagement" asp-action="Index" class="side-nav-link">
+                        <i class="ri-user-location-fill"></i>
+                        <span> Campus người dùng </span>
+                    </a>
+                </li>
+                <hr/>
+            }
+            <li class="side-nav-title mt-1">Người dùng</li>
+            <li class="side-nav-item">
+            @if (User.Identity is {IsAuthenticated: true })
+            {
+                <a asp-area="@AreaName.Guest" asp-controller="Auth" asp-action="Logout" class="side-nav-link">
+                    <i class="ri-logout-box-fill"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            }
+            else
+            {
+                <a asp-area="@AreaName.Guest" asp-controller="Auth" asp-action="Login" class="side-nav-link">
+                    <i class="ri-login-box-fill"></i>
+                    <span>Đăng nhập</span>
+                </a>
+            }
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>

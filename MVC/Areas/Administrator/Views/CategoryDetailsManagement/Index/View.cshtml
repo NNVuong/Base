@@ -1,0 +1,54 @@
+﻿@model List<CategoryDetailsResponse>
+@{
+    const string ignoreProperties = "id isdeleted categotyid";
+    var properties = typeof(CategoryDetailsResponse).GetProperties().Where(x => !ignoreProperties.Contains($"{x.Name}".ToLower())).ToArray();
+}
+
+<thead class="table-dark">
+<tr>
+    @foreach (var property in properties)
+    {
+        <th scope="col" class="text-center">
+            @(property.GetCustomAttributes(typeof(DisplayNameAttribute), true).Any()
+                ? ((DisplayNameAttribute)property.GetCustomAttributes(typeof(DisplayNameAttribute), true).First()).DisplayName
+                : property.Name)
+        </th>
+    }
+    <th scope="col" class="text-center">Tools</th>
+</tr>
+</thead>
+<tbody>
+@if (Model.Count != 0)
+{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">@item.Name</td>
+            <td class="text-center">@item.CategoryName</td>
+            <td class="text-center">
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <a asp-area="@ViewContext.RouteData.Values["Area"]"
+                       asp-controller="@ViewContext.RouteData.Values["Controller"]"
+                       asp-action="Details"
+                       asp-route-id="@item.Id"
+                       type="button" class="btn btn-outline-primary rounded-pill">
+                        <i class="ri-information-line"></i>
+                        <span>Chi tiết danh mục</span>
+                    </a>
+                    @await Html.PartialAsync(ViewPath.ButtonRemoveUpdateDetails, item)
+                </div>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    var atributeCount = properties.Length + 1;
+
+    <tr class="text-center">
+        <td colspan="@atributeCount">
+            <a class="text-info">Không có dữ liệu nào được tìm thấy</a>
+        </td>
+    </tr>
+}
+</tbody>

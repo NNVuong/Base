@@ -1,0 +1,74 @@
+﻿@model dynamic
+@{
+    PropertyInfo[] properties = Model.GetType().GetProperties();
+}
+
+<button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#detailsModal_@Model.Id">
+    <i class="ri-information-line"></i>
+    <span>Chi tiết</span>
+</button>
+
+<div class="modal fade" id="detailsModal_@Model.Id" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title">Chi tiết</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-centered table-striped mb-0 table-sm">
+                                        <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col" class="text-center">Thuộc tính</th>
+                                            <th scope="col" class="text-center">Giá trị</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach (var property in properties)
+                                        {
+                                            <tr>
+                                                <th scope="row" class="text-center">
+                                                    @(property.GetCustomAttributes(typeof(DisplayNameAttribute), true).Any()
+                                                        ? ((DisplayNameAttribute)property.GetCustomAttributes(typeof(DisplayNameAttribute), true).First()).DisplayName
+                                                        : property.Name)
+                                                </th>
+                                                <td class="text-center">
+                                                    @if (property.GetValue(Model) == null)
+                                                    {
+                                                        <i class="text-danger">NULL</i>
+                                                        continue;
+                                                    }
+
+                                                    @if (string.Equals(property.GetValue(Model).ToString(), Guid.Empty.ToString()))
+                                                    {
+                                                        <i class="text-danger">Unknown</i>
+                                                        continue;
+                                                    }
+                                                    @property.GetValue(Model)
+                                                </td>
+                                            </tr>
+                                        }
+                                        </tbody>
+                                    </table>
+                                </div> <!-- end table-responsive-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal">
+                        <i class="ri-close-circle-line"></i>
+                        <span>Đóng</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

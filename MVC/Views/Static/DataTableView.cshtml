@@ -1,0 +1,51 @@
+﻿@model dynamic
+
+@{
+    var path = $"~/Areas/{ViewContext.RouteData.Values["Area"]}/" +
+               $"Views/{ViewContext.RouteData.Values["Controller"]}/" +
+               $"{ViewContext.RouteData.Values["Action"]}";
+
+    var viewPath = path + "/View.cshtml";
+
+    var scriptsPath = path + "/Scripts.cshtml";
+
+    ViewBag.BtnPath = path + "/Button.cshtml";
+}
+
+@section Scripts
+{
+    @if (Model.Count != 0)
+    {
+        <script>
+            $("#data-table").DataTable({
+                "paging": false,  // Tắt phân trang
+                "searching": false,  // Tắt ô tìm kiếm
+                "info": false,  // Tắt thông tin số trang và số dòng
+                "ordering": true, // Bật tính năng sắp xếp
+            }).order([]).draw(); // [number, 'asc'/'desc'] 
+        </script>
+    }
+
+    @await Html.PartialAsync(scriptsPath, Model, null)
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                @await Html.PartialAsync(ViewPath.ButtonCreateSearch, ViewBag.PaginationInfo, null)
+
+                <div class="row">
+                    <div class="table-responsive">
+                        <table id="data-table" class="table table-centered table-striped mb-0 table-bordered border-primary">
+                            @await Html.PartialAsync(viewPath, Model, null)
+                        </table>
+                    </div>
+                </div>
+
+                @await Html.PartialAsync(ViewPath.PaginationNav, ViewBag.PaginationInfo, null)
+            </div>
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>

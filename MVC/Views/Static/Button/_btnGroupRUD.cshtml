@@ -1,0 +1,20 @@
+﻿@model dynamic
+
+@if (User.IsInRole(UserRoleType.SuperAdministrator))
+{
+    @await Html.PartialAsync(ViewPath.ButtonDetails, Model, null)
+}
+
+<a asp-area="@ViewContext.RouteData.Values["Area"]"
+   asp-controller="@ViewContext.RouteData.Values["Controller"]"
+   asp-action="@HttpMethods.Put"
+   asp-route-id="@Model.Id"
+   asp-route-keyword="@ViewBag.PaginationInfo.Keyword"
+   asp-route-pageSize="@ViewBag.PaginationInfo.PageSize"
+   asp-route-currentPage="@ViewBag.PaginationInfo.CurrentPage"
+   type="button" class="btn btn-outline-primary rounded-pill">
+    <i class="ri-edit-circle-line"></i>
+    <span>Chỉnh sửa</span>
+</a>
+
+@await Html.PartialAsync(ViewPath.ButtonDelete, Model.Id, null)

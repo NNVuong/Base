@@ -1,0 +1,18 @@
+﻿@model UserRoleRequest
+
+<input asp-for="Id" hidden=""/>
+<input asp-for="IsDeleted" hidden=""/>
+
+<div class="position-relative mb-3">
+    <label class="form-label" asp-for="UserId"></label>
+    <select class="form-control select2" data-toggle="select2" asp-for="UserId" asp-items="ViewBag.Users" required>
+        <option selected disabled>Vui lòng chọn "@Html.DisplayNameFor(x => x.UserId)"</option>
+    </select>
+</div>
+
+<div class="position-relative mb-3">
+    <label class="form-label" asp-for="RoleId"></label>
+    <select class="form-control select2" data-toggle="select2" asp-for="RoleId" asp-items="ViewBag.Roles" required>
+        <option selected disabled>Vui lòng chọn "@Html.DisplayNameFor(x => x.RoleId)"</option>
+    </select>
+</div>
